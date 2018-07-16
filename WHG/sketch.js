@@ -30,6 +30,9 @@ var numberOfSteps = 10;
 var testPopulation;
 
 var winCounter = -1;
+
+var img;
+var flip = true;
 function setup() {
   var canvas = createCanvas(1280,720);
   for (var i = 0; i< 22; i++) {
@@ -49,7 +52,7 @@ function setup() {
    setDots();
    winArea = new Solid(tiles[17][2], tiles[19][7]);
    testPopulation = new Population(500);
-
+   img = loadImage("assets/DAB.png");
 
 }
 
@@ -170,10 +173,25 @@ function writeShit(){
   text("Press SPACE to only show the best player", 450,680);
   textSize(36);
   if(winCounter > 0){
+
+    if(flip){
+      push();
+
+      scale(-1.0,1.0);
+      image(img,-300 -img.width + random(5),100+ random(5));
+      pop();
+    }else{
+    image(img,300+ random(5),100 + random(5));
+    }
     textSize(100);
     stroke(0);
-    text("WOW NICE, now do it again", 10,400);
+
+    text("WOOOOOOOOOOOO", 110,400);
     winCounter --;
+    if(winCounter % 10 ==0){
+
+      flip = !flip;
+    }
     textSize(36);
     noStroke();
   }
